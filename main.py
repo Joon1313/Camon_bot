@@ -1,18 +1,20 @@
 import requests
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 import re
 import pymysql
 import time
-
+import os
+load_dotenv()
 
 # camon_db = pymysql.connect(
-#     user='camon',
-#     passwd='1313',
-#     host='localhost',
-#     db='discord',
-#     charset='utf8'
+#     user=os.environ.get('USER'),
+#     passwd=os.environ.get('PASSWD'),
+#     host=os.environ.get('HOST'),
+#     db=os.environ.get('DB'),
+#     charset=os.environ.get('CHARSET')
 # )
 # cursor = camon_db.cursor(pymysql.cursors.DictCursor)
 app = commands.Bot(command_prefix='.')
@@ -559,4 +561,4 @@ async def 도움말(ctx):
     created_log(name=ctx.author, command='도움말')
     await ctx.send(embed=embed)
 
-app.run('Njk1NTgwNzQ3MTI5Njg0MDE4.XocQDQ.78InqxgFCikyebE1UpMD5O2cV3w')
+app.run(os.environ.get('TOKEN'))
